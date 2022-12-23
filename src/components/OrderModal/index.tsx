@@ -5,6 +5,7 @@ import { Order } from '../../types/Order';
 interface OrderModalProps {
 	visible: boolean,
 	order: Order | null,
+	onClose: () => void,
 }
 
 export function OrderModal(props: OrderModalProps) {
@@ -26,7 +27,7 @@ export function OrderModal(props: OrderModalProps) {
 			<ModalBody>
 				<header>
 					<strong>Mesa {props.order.table}</strong>
-					<button type='button'>
+					<button type='button' onClick={props.onClose}>
 						<img src={closeIcon} alt="Ícone de fechamento" />
 					</button>
 				</header>
