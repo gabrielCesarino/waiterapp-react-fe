@@ -1,4 +1,5 @@
 import { Order } from '../../types/Order';
+import { Orders } from '../Orders';
 import { Board, OrdersContainer } from './styles';
 
 interface OrdersBoardProps {
@@ -12,17 +13,18 @@ export function OrdersBoard(props: OrdersBoardProps) {
 		<header>
 			<span>{props.icon}</span>
 			<strong>{props.title}</strong>
-			<span>(1)</span>
+			<span>({props.orders.length})</span>
 		</header>
-		<OrdersContainer>
-			<button type='button'>
-				<strong>Mesa 2</strong>
-				<span>2 itens</span>
-			</button>
-			<button type='button'>
-				<strong>Mesa 3</strong>
-				<span>5 itens</span>
-			</button>
-		</OrdersContainer>
+
+		{props.orders.length > 0 &&
+			<OrdersContainer>
+				{props.orders.map((order) => (
+					<button type='button' key={order._id}>
+						<strong>Mesa {order.table}</strong>
+						<span>{order.products.length} itens</span>
+					</button>
+				))}
+			</OrdersContainer>
+		}
 	</Board>;
 }
